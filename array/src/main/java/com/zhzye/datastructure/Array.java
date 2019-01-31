@@ -74,7 +74,7 @@ public class Array {
 
     @Override
     public String toString() {
-        return "Array{" +
+        return "com.zhzye.datastructure.Array{" +
                 "capacity=" + data.length +
                 ", size=" + size +
                 ", data=" + Arrays.toString(data) +

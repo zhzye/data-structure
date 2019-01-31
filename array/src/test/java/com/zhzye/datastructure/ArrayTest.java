@@ -1,6 +1,5 @@
-package datastructure;
+package com.zhzye.datastructure;
 
-import com.zhzye.datastructure.Array;
 import org.junit.Test;
 
 /**
