@@ -64,20 +64,107 @@ public class Array {
     }
 
     /**
+     * 首部追加元素
+     * @param element
+     */
+    public void addFirst(Integer element) {
+        addAtIndex(0, element);
+    }
+
+    /**
      * 尾部追加元素
      * @param element
      */
     public void addLast(Integer element) {
-        data[size] = element;
+        addAtIndex(size, element);
+    }
+
+    /**
+     * 查询某个位置元素
+     * @param index
+     */
+    public Integer queryAtIndex(Integer index) {
+        return data[index];
+    }
+
+    /**
+     * 更新某个位置元素
+     * @param index
+     * @param element
+     */
+    public void updateAtIndex(Integer index, Integer element) {
+        data[index] = element;
+    }
+
+    /**
+     * 查找元素
+     * @param element
+     * @return
+     */
+    public Integer findElement(Integer element) {
+        Integer ret = -1;
+        for (int i = 0; i < size; i++) {
+            if (data[i] == element) {
+                ret = i;
+                break;
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * 是否存在某个元素
+     * @param element
+     * @return
+     */
+    public Boolean contains(Integer element) {
+        if (findElement(element) != -1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 删除指定位置元素
+     * @param index
+     */
+    public void deleteAtIndex(Integer index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException();
+        }
+        for (int i = index; i < size - 1; i++) {
+            data[i] = data[i+1];
+        }
+        size--;
+    }
+
+    /**
+     * 在index插入
+     * @param index
+     * @param element
+     */
+    public void addAtIndex(Integer index, Integer element) {
+        if (size == data.length) {
+            throw new IllegalArgumentException();
+        }
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException();
+        }
+        for (int i = size; i > index; i--) {
+            data[i] = data[i-1];
+        }
+        data[index] = element;
         size++;
     }
 
     @Override
     public String toString() {
-        return "com.zhzye.datastructure.Array{" +
-                "capacity=" + data.length +
-                ", size=" + size +
-                ", data=" + Arrays.toString(data) +
-                '}';
+        StringBuffer ret = new StringBuffer();
+        ret.append(String.format("size:%d,capacity:%d ", size, getCapacity()));
+        ret.append(". data = ");
+        for (int i = 0;i < size; i++) {
+            ret.append(String.format("%d ", data[i]));
+        }
+        return ret.toString();
     }
 }
