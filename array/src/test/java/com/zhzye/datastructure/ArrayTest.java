@@ -1,5 +1,6 @@
 package com.zhzye.datastructure;
 
+import com.zhzye.entity.Student;
 import org.junit.Test;
 
 /**
@@ -9,10 +10,10 @@ import org.junit.Test;
 public class ArrayTest {
     @Test
     public void fetures() {
-        Array longArray = new Array();
+        Array<Integer> longArray = new Array<>();
         longArray.addLast(5);
         System.out.println(longArray);
-        Array shortArray = new Array(10);
+        Array<Integer> shortArray = new Array<>(10);
         shortArray.addLast(1);
         shortArray.addLast(2);
         shortArray.addLast(3);
@@ -24,5 +25,13 @@ public class ArrayTest {
         shortArray.deleteAtIndex(4);
         shortArray.deleteAtIndex(0);
         System.out.println(shortArray);
+    }
+
+    @Test
+    public void studentArray() {
+        Array<Student> studentArray = new Array<>();
+        studentArray.addFirst(new Student("ha", 28));
+        studentArray.addFirst(new Student("zhangsan", 30));
+        System.out.println(studentArray);
     }
 }

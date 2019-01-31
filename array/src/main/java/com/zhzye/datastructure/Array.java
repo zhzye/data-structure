@@ -6,7 +6,7 @@ import java.util.Arrays;
  * 实现数组结构
  * @author zhzye@gmail.com
  */
-public class Array {
+public class Array<E> {
     /**
      * 默认容量
      */
@@ -20,13 +20,13 @@ public class Array {
     /**
      * 静态数组，用来内存操作
      */
-    private int[] data;
+    private E[] data;
 
     /**
      * 默认容量初始化
      */
     public Array() {
-        data = new int[DEFAULT_CAPACITY];
+        data = (E[])new Object[DEFAULT_CAPACITY];
         size = 0;
     }
 
@@ -35,7 +35,7 @@ public class Array {
      * @param capacity
      */
     public Array(int capacity) {
-        data = new int[capacity];
+        data = (E[])new Object[capacity];
         size = 0;
     }
 
@@ -67,7 +67,7 @@ public class Array {
      * 首部追加元素
      * @param element
      */
-    public void addFirst(Integer element) {
+    public void addFirst(E element) {
         addAtIndex(0, element);
     }
 
@@ -75,7 +75,7 @@ public class Array {
      * 尾部追加元素
      * @param element
      */
-    public void addLast(Integer element) {
+    public void addLast(E element) {
         addAtIndex(size, element);
     }
 
@@ -83,7 +83,7 @@ public class Array {
      * 查询某个位置元素
      * @param index
      */
-    public Integer queryAtIndex(Integer index) {
+    public E queryAtIndex(Integer index) {
         return data[index];
     }
 
@@ -92,7 +92,7 @@ public class Array {
      * @param index
      * @param element
      */
-    public void updateAtIndex(Integer index, Integer element) {
+    public void updateAtIndex(Integer index, E element) {
         data[index] = element;
     }
 
@@ -101,10 +101,10 @@ public class Array {
      * @param element
      * @return
      */
-    public Integer findElement(Integer element) {
+    public Integer findElement(E element) {
         Integer ret = -1;
         for (int i = 0; i < size; i++) {
-            if (data[i] == element) {
+            if (element.equals(data[i])) {
                 ret = i;
                 break;
             }
@@ -117,7 +117,7 @@ public class Array {
      * @param element
      * @return
      */
-    public Boolean contains(Integer element) {
+    public Boolean contains(E element) {
         if (findElement(element) != -1) {
             return true;
         }
@@ -143,7 +143,7 @@ public class Array {
      * @param index
      * @param element
      */
-    public void addAtIndex(Integer index, Integer element) {
+    public void addAtIndex(Integer index, E element) {
         if (size == data.length) {
             throw new IllegalArgumentException();
         }
@@ -163,7 +163,7 @@ public class Array {
         ret.append(String.format("size:%d,capacity:%d ", size, getCapacity()));
         ret.append(". data = ");
         for (int i = 0;i < size; i++) {
-            ret.append(String.format("%d ", data[i]));
+            ret.append(data[i] + " ");
         }
         return ret.toString();
     }
