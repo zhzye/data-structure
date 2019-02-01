@@ -10,7 +10,12 @@ public class Array<E> {
     /**
      * 默认容量
      */
-    private Integer DEFAULT_CAPACITY = 100;
+    private final Integer DEFAULT_CAPACITY = 100;
+
+    /**
+     * 动态数组扩容因子
+     */
+    private final Integer CAPACITY_RESIZE = 2;
 
     /**
      * 实际元素数量
@@ -135,7 +140,17 @@ public class Array<E> {
         for (int i = index; i < size - 1; i++) {
             data[i] = data[i+1];
         }
+        if (size <= (data.length / (CAPACITY_RESIZE * 2))) {
+            resize(size);
+        }
         size--;
+    }
+
+    /**
+     * 删除最后一个
+     */
+    public void deleteLast() {
+        deleteAtIndex(size - 1);
     }
 
     /**
@@ -144,11 +159,11 @@ public class Array<E> {
      * @param element
      */
     public void addAtIndex(Integer index, E element) {
-        if (size == data.length) {
-            throw new IllegalArgumentException();
-        }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException();
+        }
+        if (size == data.length) {
+            resize(data.length * CAPACITY_RESIZE);
         }
         for (int i = size; i > index; i--) {
             data[i] = data[i-1];
@@ -166,5 +181,19 @@ public class Array<E> {
             ret.append(data[i] + " ");
         }
         return ret.toString();
+    }
+
+    /**
+     * 动态扩容
+     * @param newCapacity
+     */
+    public void resize(Integer newCapacity) {
+        if (newCapacity != 0) {
+            E[] newData = (E[]) new Object[newCapacity];
+            for (int i = 0; i < size; i++) {
+                newData[i] = data[i];
+            }
+            data = newData;
+        }
     }
 }

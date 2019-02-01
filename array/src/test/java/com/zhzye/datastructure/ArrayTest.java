@@ -28,6 +28,47 @@ public class ArrayTest {
     }
 
     @Test
+    public void resize() {
+        Array<Integer> data = new Array<>(2);
+        data.addLast(1);
+        System.out.println(data);
+        data.addLast(2);
+        System.out.println(data);
+        data.addLast(3);
+        System.out.println(data);
+        data.addLast(4);
+        System.out.println(data);
+        data.addLast(5);
+        System.out.println(data);
+        data.addLast(6);
+        System.out.println(data);
+        data.addLast(7);
+        System.out.println(data);
+        data.addLast(8);
+        System.out.println(data);
+        data.addLast(9);
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+        data.deleteLast();
+        System.out.println(data);
+    }
+
+    @Test
     public void studentArray() {
         Array<Student> studentArray = new Array<>();
         studentArray.addFirst(new Student("ha", 28));
